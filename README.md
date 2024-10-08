@@ -30,11 +30,7 @@ Use o comando `git clone https://github.com/AthosSperber/Xmath.git` para clonar 
 
 Utilize `cd Xmath` para entrar na pasta do projeto.
 
-### 3. Instale as dependências (se houver)
-
-Este projeto depende principalmente de bibliotecas padrão do Python, como `Tkinter` e `json`. Caso você precise instalar o Tkinter, utilize o comando `sudo apt-get install python3-tk` no Linux ou `pip install tk` no Windows.
-
-### 4. Execute a aplicação
+### 3. Execute a aplicação
 
 Para iniciar a aplicação, execute `python main.py`.
 
