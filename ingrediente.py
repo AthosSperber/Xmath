@@ -33,7 +33,7 @@ def calcular_total_sanduiche(ingredientes_sanduiche, dados):
     for ingrediente_nome, quantidade_necessaria in ingredientes_sanduiche.items():
         ingrediente = Ingrediente(ingrediente_nome, dados)
         mercado, preco_unidade = ingrediente.mercado_mais_barato()
-        
+    
         if mercado:
             quantidade_comprada = float(ingrediente.precos_por_mercado[mercado]["quantidade"])
             unidade = ingrediente.precos_por_mercado[mercado]["unidade"]
