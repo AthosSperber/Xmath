@@ -7,9 +7,6 @@ class Ingrediente:
         self.precos_por_mercado = dados.dados.get(nome, {})
 
     def adicionar_preco(self, mercado, preco, quantidade, unidade, gerenciador_de_dados):
-        """
-        Adiciona ou atualiza o preço de um ingrediente para um determinado mercado.
-        """
         self.precos_por_mercado[mercado] = {
             "preco": preco,
             "quantidade": quantidade,
@@ -28,7 +25,7 @@ class Ingrediente:
 
 def calcular_total_sanduiche(ingredientes_sanduiche, dados):
     """
-    Calcula o custo total de um sanduíche com base nos ingredientes e mercados mais baratos.
+    Calcula o custo total de um sanduíche com base nos ingredientes e mercados mais baratos
     """
     total = 0
     detalhes_ingredientes = []
