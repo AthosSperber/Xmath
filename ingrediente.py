@@ -24,29 +24,25 @@ class Ingrediente:
         return mercado_barato, self.precos_por_mercado[mercado_barato]["preco"]
 
 def calcular_total_sanduiche(ingredientes_sanduiche, dados):
-    """
-    Calcula o custo total de um sanduíche com base nos ingredientes e mercados mais baratos
-    """
     total = 0
     detalhes_ingredientes = []
     
     for ingrediente_nome, quantidade_necessaria in ingredientes_sanduiche.items():
         ingrediente = Ingrediente(ingrediente_nome, dados)
         mercado, preco_unidade = ingrediente.mercado_mais_barato()
-    
-        if mercado:
-            quantidade_comprada = float(ingrediente.precos_por_mercado[mercado]["quantidade"])
+        
+        if mercado:         
             unidade = ingrediente.precos_por_mercado[mercado]["unidade"]
-
             if unidade == "gramas":
-                preco_total = (preco_unidade / quantidade_comprada) * quantidade_necessaria
-            elif unidade == "unidade":
-                preco_total = (preco_unidade / quantidade_comprada) * quantidade_necessaria
+                quantidade_comprada = float(ingrediente.precos_por_mercado[mercado]["quantidade"])
+                preco_total = (preco_unidade / quantidade_comprada) * quantidade_necessaria            
             else:
-                preco_total = 0
-
+                quantidade_comprada = int(ingrediente.precos_por_mercado[mercado]["quantidade"])
+                preco_total = (preco_unidade / quantidade_comprada) * quantidade_necessaria
+            
             total += preco_total
             detalhes_ingredientes.append((ingrediente_nome, mercado, preco_unidade, quantidade_necessaria, preco_total))
     
-    lucro_total = total * 1.7  # Correção de 70% de lucro
+    lucro_total = total * 1.7 
     return detalhes_ingredientes, total, lucro_total
+

@@ -2,32 +2,12 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from dados import GerenciadorDeDados
 from ingrediente import Ingrediente
+from ingrediente import calcular_total_sanduiche
 
 
 dados = GerenciadorDeDados("ingredientes.json")
 
-def calcular_total_sanduiche(ingredientes_sanduiche):
-    total = 0
-    detalhes_ingredientes = []
-    
-    for ingrediente_nome, quantidade_necessaria in ingredientes_sanduiche.items():
-        ingrediente = Ingrediente(ingrediente_nome, dados)
-        mercado, preco_unidade = ingrediente.mercado_mais_barato()
-        
-        if mercado:
-            quantidade_comprada = float(ingrediente.precos_por_mercado[mercado]["quantidade"])
-            unidade = ingrediente.precos_por_mercado[mercado]["unidade"]
-            
-            if unidade == "gramas":
-                preco_total = (preco_unidade / quantidade_comprada) * quantidade_necessaria
-            else:
-                preco_total = (preco_unidade / quantidade_comprada) * quantidade_necessaria
-            
-            total += preco_total
-            detalhes_ingredientes.append((ingrediente_nome, mercado, preco_unidade, quantidade_necessaria, preco_total))
-    
-    lucro_total = total * 1.7 
-    return detalhes_ingredientes, total, lucro_total
+
 
 
 def atualizar_tabela_sanduiches():
@@ -38,8 +18,8 @@ def atualizar_tabela_sanduiches():
     xIdentidade = {"pão": 1, "carne": 1, "queijo": 30, "presunto": 40, "ovo": 0}
 
     # Calculando totais e mercados mais baratos para cada sanduíche
-    detalhes_1, total_1, lucro_1 = calcular_total_sanduiche(xDeterminante)
-    detalhes_2, total_2, lucro_2 = calcular_total_sanduiche(xIdentidade)
+    detalhes_1, total_1, lucro_1 = calcular_total_sanduiche(xDeterminante, dados)
+    detalhes_2, total_2, lucro_2 = calcular_total_sanduiche(xIdentidade, dados)
 
     tabela_sanduiches.insert('', 'end', values=("Preço Total", f"R$ {total_1:.2f}", f"R$ {total_2:.2f}"))
     tabela_sanduiches.insert('', 'end', values=("Preço com Lucro", f"R$ {lucro_1:.2f}", f"R$ {lucro_2:.2f}"))
