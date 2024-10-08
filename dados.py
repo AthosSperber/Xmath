@@ -7,7 +7,7 @@ class GerenciadorDeDados:
 
     def carregar_dados(self):
         """
-        Carrega os dados de um arquivo JSON.
+        Carrega os dados do arquivo JSON
         """
         try:
             with open(self.arquivo_json, 'r') as file:
@@ -17,21 +17,21 @@ class GerenciadorDeDados:
 
     def salvar_dados(self):
         """
-        Salva os dados no arquivo JSON.
+        Salva os dados no arquivo JSON
         """
         with open(self.arquivo_json, 'w') as file:
             json.dump(self.dados, file, indent=4)
 
     def editar_ingrediente(self, nome_ingrediente, precos_por_mercado):
         """
-        Edita ou adiciona um ingrediente no arquivo JSON.
+        adiciona um ingrediente no arquivo JSON
         """
         self.dados[nome_ingrediente] = precos_por_mercado
         self.salvar_dados()
 
     def deletar_ingrediente(self, nome_ingrediente):
         """
-        Remove um ingrediente do arquivo JSON.
+        Remove ingrediente do arquivo JSON.
         """
         if nome_ingrediente in self.dados:
             del self.dados[nome_ingrediente]

@@ -3,10 +3,9 @@ from tkinter import ttk, messagebox
 from dados import GerenciadorDeDados
 from ingrediente import Ingrediente
 
-# Inicializando o gerenciador de dados
+
 dados = GerenciadorDeDados("ingredientes.json")
 
-# Função para calcular o mercado mais barato e o total de um sanduíche
 def calcular_total_sanduiche(ingredientes_sanduiche):
     total = 0
     detalhes_ingredientes = []
@@ -19,7 +18,6 @@ def calcular_total_sanduiche(ingredientes_sanduiche):
             quantidade_comprada = float(ingrediente.precos_por_mercado[mercado]["quantidade"])
             unidade = ingrediente.precos_por_mercado[mercado]["unidade"]
             
-            # Cálculo para gramas ou unidade
             if unidade == "gramas":
                 preco_total = (preco_unidade / quantidade_comprada) * quantidade_necessaria
             else:
@@ -28,10 +26,10 @@ def calcular_total_sanduiche(ingredientes_sanduiche):
             total += preco_total
             detalhes_ingredientes.append((ingrediente_nome, mercado, preco_unidade, quantidade_necessaria, preco_total))
     
-    lucro_total = total * 1.7  # Correção de 70% de lucro
+    lucro_total = total * 1.7 
     return detalhes_ingredientes, total, lucro_total
 
-# Função para atualizar a tabela de sanduíches (colocando os sanduíches nas colunas)
+
 def atualizar_tabela_sanduiches():
     tabela_sanduiches.delete(*tabela_sanduiches.get_children())
     
@@ -43,7 +41,6 @@ def atualizar_tabela_sanduiches():
     detalhes_1, total_1, lucro_1 = calcular_total_sanduiche(xDeterminante)
     detalhes_2, total_2, lucro_2 = calcular_total_sanduiche(xIdentidade)
 
-    # Adiciona os nomes dos sanduíches como colunas
     tabela_sanduiches.insert('', 'end', values=("Preço Total", f"R$ {total_1:.2f}", f"R$ {total_2:.2f}"))
     tabela_sanduiches.insert('', 'end', values=("Preço com Lucro", f"R$ {lucro_1:.2f}", f"R$ {lucro_2:.2f}"))
 
@@ -83,7 +80,8 @@ def toggle_cadastro_ingrediente():
     else:
         frame_cadastro.grid(row=8, column=0, columnspan=6)
 
-# Função para adicionar ingrediente
+
+
 def adicionar_ingrediente():
     nome = nome_ingrediente.get()
     quantidade = quantidade_ingrediente.get()
@@ -105,7 +103,8 @@ def adicionar_ingrediente():
     else:
         messagebox.showwarning("Erro", "Preencha todos os campos.")
 
-# Função para excluir ingrediente
+
+
 def excluir_ingrediente():
     selecionado = tabela_ingredientes.selection()
     if not selecionado:
@@ -121,9 +120,10 @@ def excluir_ingrediente():
     atualizar_tabela_sanduiches()
     atualizar_tabela_ingredientes()
 
+
 # Criando a janela principal
 janela = tk.Tk()
-janela.title("Gerenciamento de Sanduíches")
+janela.title("Lanchonete X-Math")
 
 # Tabela de sanduíches
 colunas_sanduiches = ('', 'X-Determinante', 'X-Identidade')
@@ -133,6 +133,7 @@ for col in colunas_sanduiches:
     tabela_sanduiches.column(col, width=150)
 tabela_sanduiches.grid(row=0, column=0, columnspan=3)
 
+
 # Tabela de ingredientes
 colunas_ingredientes = ('Ingrediente', 'Mercado com melhor preço', 'Quantidade Comprada', 'Preço Pago', 'Qtde X-Determinante', 'Qtde X-Identidade')
 tabela_ingredientes = ttk.Treeview(janela, columns=colunas_ingredientes, show='headings', height=10)
@@ -141,16 +142,20 @@ for col in colunas_ingredientes:
     tabela_ingredientes.column(col, width=150)
 tabela_ingredientes.grid(row=1, column=0, columnspan=6)
 
+
 # Botão para mostrar/ocultar cadastro de ingrediente
 btn_toggle_cadastro = tk.Button(janela, text="Cadastrar Ingrediente", command=toggle_cadastro_ingrediente)
 btn_toggle_cadastro.grid(row=7, column=0, pady=10)
+
 
 # Botão para excluir ingrediente
 btn_excluir_ingrediente = tk.Button(janela, text="Excluir Ingrediente", command=excluir_ingrediente)
 btn_excluir_ingrediente.grid(row=7, column=1, pady=10)
 
-# Frame de cadastro de ingredientes (inicialmente oculto)
+
+# Frame de cadastro de ingredientes
 frame_cadastro = tk.Frame(janela)
+
 tk.Label(frame_cadastro, text="Nome do Ingrediente:").grid(row=0, column=0)
 nome_ingrediente = tk.Entry(frame_cadastro)
 nome_ingrediente.grid(row=0, column=1)
@@ -175,9 +180,9 @@ preco_ingrediente.grid(row=4, column=1)
 btn_adicionar_ingrediente = tk.Button(frame_cadastro, text="Adicionar Ingrediente", command=adicionar_ingrediente)
 btn_adicionar_ingrediente.grid(row=5, column=0, pady=10, columnspan=2)
 
-# Iniciando as tabelas
 atualizar_tabela_sanduiches()
 atualizar_tabela_ingredientes()
 
-# Iniciar a interface gráfica
+
+
 janela.mainloop()

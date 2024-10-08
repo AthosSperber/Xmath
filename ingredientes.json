@@ -1,1 +1,37 @@
-{}
+{
+    "p\u00e3o": {
+        "atacadao": {
+            "preco": 23.9,
+            "quantidade": 12.0,
+            "unidade": "unidade"
+        }
+    },
+    "presunto": {
+        "atacadao": {
+            "preco": 39.0,
+            "quantidade": 1000.0,
+            "unidade": "gramas"
+        }
+    },
+    "queijo": {
+        "atacadao": {
+            "preco": 55.33,
+            "quantidade": 1000.0,
+            "unidade": "gramas"
+        }
+    },
+    "carne": {
+        "atacadao": {
+            "preco": 59.8,
+            "quantidade": 36.0,
+            "unidade": "unidade"
+        }
+    },
+    "ovo": {
+        "atacadao": {
+            "preco": 15.0,
+            "quantidade": 30.0,
+            "unidade": "unidade"
+        }
+    }
+}
