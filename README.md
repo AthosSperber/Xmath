@@ -40,10 +40,3 @@ Para iniciar a aplicação, execute `python main.py`.
 2. **Visualização dos Lanches**: Na tela principal, você pode visualizar os ingredientes de cada lanche (X-Determinante e X-Identidade), o mercado mais barato para cada ingrediente, e o preço total com margem de lucro.
 3. **Gerenciamento de Dados**: Todos os dados inseridos são armazenados em um arquivo JSON, permitindo fácil acesso e manipulação futura.
 
-## Estrutura de Arquivos
-
-- `main.py`: Arquivo principal que executa a aplicação.
-- `gerenciador_de_dados.py`: Classe responsável por gerenciar o arquivo JSON de ingredientes e mercados.
-- `interface.py`: Implementação da interface gráfica com Tkinter.
-- `ingredientes.json`: Arquivo JSON para armazenar os dados dos ingredientes e mercados.
-
